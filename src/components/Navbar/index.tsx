@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import Breadcrumbs from '../Breadcrumbs';
 
 const Navbar = (): JSX.Element => {
     return (
@@ -11,6 +12,8 @@ const Navbar = (): JSX.Element => {
                 <NavLink to="help">Help</NavLink>
                 <NavLink to="careers">Careers</NavLink>
             </nav>
+
+            <Breadcrumbs />
         </header>
     );
 };
