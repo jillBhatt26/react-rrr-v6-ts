@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { ICareer } from '../../interfaces/careers';
+import { ICareer } from '../../../interfaces/careers';
 
 const CareersPage = (): JSX.Element => {
     // hook to use the loader function's returned data
@@ -8,7 +8,11 @@ const CareersPage = (): JSX.Element => {
     return (
         <div className="careers">
             {careers.map((career: ICareer) => (
-                <Link key={career.id} to="/">
+                <Link
+                    key={career.id}
+                    //  to=":id" // incorrect way, redirects to /careers/id
+                    to={career.id.toString()} // redirects to /careers/{id}
+                >
                     <p>{career.title}</p>
                     <p>Based in, {career.location}</p>
                     <p>Salary: {career.salary}</p>

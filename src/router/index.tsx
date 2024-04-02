@@ -5,18 +5,23 @@ import {
     Route
 } from 'react-router-dom';
 
-// pages imports
+// pages
 import HomePage from '../pages/Home';
 import AboutPage from '../pages/About';
-import AppLayout from '../layout/AppLayout';
-import HelpLayout from '../layout/HelpLayout';
 import HelpFAQPage from '../pages/help/FAQ';
 import HelpContactPage from '../pages/help/Contact';
 import ErrorPage from '../pages/Error';
-import CareersLayout from '../layout/CareersLayout';
-import CareersPage from '../pages/Careers';
+import CareersPage from '../pages/careers/Careers';
+import CareerDetailsPage from '../pages/careers/CareerDetails';
+import CareersErrorPage from '../pages/careers/CareersError';
 
-import { fetchCareersLoader } from '../services';
+// layouts
+import AppLayout from '../layout/AppLayout';
+import CareersLayout from '../layout/CareersLayout';
+import HelpLayout from '../layout/HelpLayout';
+
+// services
+import { fetchCareerDetailsLoader, fetchCareersLoader } from '../services';
 
 // create a router
 const AppRouter = createBrowserRouter(
@@ -38,11 +43,20 @@ const AppRouter = createBrowserRouter(
                 <Route path="contact" element={<HelpContactPage />} />
             </Route>
 
-            <Route path="careers" element={<CareersLayout />}>
+            <Route
+                path="careers"
+                element={<CareersLayout />}
+                errorElement={<CareersErrorPage />}
+            >
                 <Route
                     index
                     element={<CareersPage />}
                     loader={fetchCareersLoader}
+                />
+                <Route
+                    path=":id"
+                    element={<CareerDetailsPage />}
+                    loader={fetchCareerDetailsLoader}
                 />
             </Route>
 
