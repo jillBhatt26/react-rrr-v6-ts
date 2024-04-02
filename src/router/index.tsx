@@ -13,8 +13,10 @@ import HelpLayout from '../layout/HelpLayout';
 import HelpFAQPage from '../pages/help/FAQ';
 import HelpContactPage from '../pages/help/Contact';
 import ErrorPage from '../pages/Error';
-import CareersLayout from '../layout/CareeersLayout';
-import CareersPage, { careersLoader } from '../pages/Careers';
+import CareersLayout from '../layout/CareersLayout';
+import CareersPage from '../pages/Careers';
+
+import { fetchCareersLoader } from '../services';
 
 // create a router
 const AppRouter = createBrowserRouter(
@@ -37,7 +39,11 @@ const AppRouter = createBrowserRouter(
             </Route>
 
             <Route path="careers" element={<CareersLayout />}>
-                <Route index element={<CareersPage />} loader={careersLoader} />
+                <Route
+                    index
+                    element={<CareersPage />}
+                    loader={fetchCareersLoader}
+                />
             </Route>
 
             {/* Error page, path === '*' */}

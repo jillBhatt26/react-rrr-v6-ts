@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Link, useLoaderData } from 'react-router-dom';
 import { ICareer } from '../../interfaces/careers';
 
@@ -17,19 +16,6 @@ const CareersPage = (): JSX.Element => {
             ))}
         </div>
     );
-};
-
-// loader function
-export const careersLoader = async () => {
-    try {
-        const fetchCareersData = await axios({
-            url: 'http://localhost:8000/careers'
-        });
-
-        return fetchCareersData.data;
-    } catch (error: any) {
-        alert(error.message ?? 'Failed to load careers page...');
-    }
 };
 
 export default CareersPage;
